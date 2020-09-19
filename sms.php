@@ -41,12 +41,14 @@ $pesan = trim(fgets(STDIN));
 
 
 $headers = array();
-    $headers[] = 'LANG: en';
+    $headers[] = 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X3R5cGUiOiIzYjZiMjIwYi0yMDE5LTQyNzktODM0My1jYmU2MTY3Zjc2MDIiLCJlbWFpbCI6InJhY2hlbHN1Z2VoYWFAZ21haWwuY29tIiwiZXhwIjoxNTkyOTY4MjgwLCJpYXQiOjE1OTI4ODE4ODAsInVuaXEiOiIwZjM0ZWY4OS1mOTM0LTQ0ZWItYTFhMC05ODM4NmFmNTcxZTMiLCJ1c2VyX2lkIjoiMTAxMzM3In0.0fOVwxMU_fwEVx51M4SOJMND9FWGgaU3ExmKD9Th_x0';
+    $headers[] = 'deviceplatform: android';
     $headers[] = 'Content-Type: application/json; charset=UTF-8';
-    $headers[] = 'Content-Length: 44';
-    $headers[] = 'Host: phr.gms.digital';
+    $headers[] = 'Content-Length: 52';
+    $headers[] = 'Host: asgard.koinworks.com';
     $headers[] = 'Connection: close';
     $headers[] = 'Accept-Encoding: gzip, deflate';
+    $headers[] = 'User-Agent: okhttp/3.14.4';
 
     //otp
 $i = 0;
