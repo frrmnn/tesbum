@@ -51,7 +51,7 @@ $headers = array();
     //otp
 $i = 0;
 while($i < $jmlh) {
-    $gtop = ""{\"email\":\"\",\"phone_no\":\"$no\",\"user_id\":\"\"}";
+    $gtop = "{\"email\":\"\",\"phone_no\":\"$no\",\"user_id\":\"\"}";
     $gotp = curl('https://asgard.koinworks.com/v1/notification/otp/send', $gtop, $headers);
     $gots = json_decode($gotp[1]); 
     if($gots == true ){
